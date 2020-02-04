@@ -19,7 +19,7 @@ function tiradaDado() {
 
 let totalPuntuacion = 0;
 
-for (let i = 1; totalPuntuacion <= 50; i++) {
+for (let i = 1; totalPuntuacion < 50; i++) {
   const tirada = tiradaDado();
   totalPuntuacion += tirada;
   if (totalPuntuacion <= 49) {
