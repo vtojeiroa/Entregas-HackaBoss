@@ -27,7 +27,6 @@ class Item {
 // catalogo de items
 const myItemList = Item.inventary(itemNames, itemPrices);
 console.log(myItemList);
-console.log(myItemList[0].name);
 
 class CartItem {
   ammount = 1;
@@ -39,20 +38,29 @@ class CartItem {
   }
 }
 const myCartItem = new CartItem();
-console.log(myCartItem);
 class User {
   #cart = [];
   name;
   constructor(name) {
     this.name = name;
   }
-  addToCart(limit, itemList) {
+  addToCart(item) {
+    for (let i = 0; i < this.#cart.length; i++) {
+      if (item.name === this.#cart[i].item.name) {
+        this.#cart[i].increase();
+        return;
+      }
+    }
+    this.#cart.push(new CartItem(item));
+  }
+  fillCart(limit, itemList) {
     for (let i = 0; i < limit; i++) {
-      const randomItem = Math.round(Math.random() * (itemList.length - 1));
-      this.#cart.push(new CartItem(itemList[randomItem]));
+      const randomItem = Math.floor(Math.random() * itemList.length);
+      this.addToCart(itemList[randomItem]);
     }
   }
-  pay() {
+
+  pay(cart) {
     return this.#cart;
   }
 }
@@ -69,17 +77,14 @@ class Shop {
     }
     const total = cart.reduce((accumulator, item) => {
       return accumulator + item.ammount * item.item.price;
-    });
+    }, 0);
     console.log(`TOTAL = ${total}`);
   }
 }
 const myUser = new User('Pedro');
-myUser.addToCart(7, myItemList);
+myUser.fillCart(7, myItemList);
 console.log(myUser);
 const myShopCart = myUser.pay();
 console.log(myShopCart);
-console.log(myShopCart[0].ammount);
-console.log(myShopCart[0].item.name);
-console.log(myShopCart[0].item.price);
 const myShop = new Shop('Galerias');
 const myFinalShop = Shop.checkout(myShopCart);
