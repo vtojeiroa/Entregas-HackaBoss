@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/ejercicio.css" />
+  </head>
+  <body>
+    <header><h1>Conversor de Monedas</h1></header>
+    <main id="converter">
+      <form name="converter" class="converter">
+        <fieldset>
+          <section class="input">
+            <h2>Quiero convertir ...</h2>
+            <input
+              type="number"
+              id="fromAmmount"
+              placeholder="Escribe el importe"
+              value=""
+            />
+            <select name="input" id="fromRate">
+              <option id="from">Selecciona Moneda</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </section>
+          <section class="output">
+            <h2>A ...</h2>
+            <select name="output" id="toRate">
+              <option for="output" value="currency">Selecciona Moneda</option>
+              <option value="EUR">EUR</option>
+            </select>
+            <button id="change">Convertir!!</button>
+          </section>
+          <section class="result">
+            <h2 id="rate" value="rate"></h2>
+          </section>
+        </fieldset>
+      </form>
+    </main>
+
+    <script type="module" src="/ejercicio.js"></script>
+  </body>
+</html>
