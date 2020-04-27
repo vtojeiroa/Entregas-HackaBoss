@@ -28,7 +28,7 @@ const chalk = require("chalk");
 //La aplicación debería leer un archivo .env que tuviera una variable de entorno LANG=es/gl
 //en base a esa variable mostrar los textos de la aplicación
 
-const file = path.join(process.cwd(), "task.json");
+const file = path.join(__dirname, "task.json");
 
 let listTodos = [];
 
