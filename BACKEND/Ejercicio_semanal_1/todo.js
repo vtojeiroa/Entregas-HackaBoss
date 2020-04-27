@@ -44,9 +44,15 @@ const todo = {
       added: format(new Date(), `d 'de' MMMM 'de' yyyy, HH':'mm`, {
         locale: es,
       }),
-      priority: "normal",
+      priority: false,
       done: false,
     });
+  },
+
+  priority: function (index) {
+    if (listTodos[index]) {
+      listTodos[index].priority === true;
+    }
   },
 
   //Borramos los Todos marcados como done.
@@ -74,17 +80,18 @@ const todo = {
         "\n" +
           index +
           "\t" +
-          todo.text +
+          (todo.priority ? chalk.blueBright(todo.text) : todo.text) +
           "\t" +
           todo.added +
           "\t" +
-          (todo.done ? " hecho \u2713" : "pendiente") +
+          (todo.done
+            ? chalk.greenBright(" hecho \u2713")
+            : chalk.redBright("pendiente")) +
           "\n"
       );
     });
   },
 };
-
 const argv = process.argv.slice(2);
 const command = argv.shift();
 
