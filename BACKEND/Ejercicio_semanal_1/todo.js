@@ -78,7 +78,7 @@ const todo = {
           "\t" +
           todo.added +
           "\t" +
-          (todo.done ? " \u2713" : "pendiente") +
+          (todo.done ? " hecho \u2713" : "pendiente") +
           "\n"
       );
     });
