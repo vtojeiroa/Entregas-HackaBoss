@@ -8,11 +8,11 @@ const path = require("path");
 const chalk = require("chalk");
 
 //node todo.js Comprar pan //Añadiria "comprar pan" al principio de la lista de tareas
-//node todo.js Ir al dentista--priority //Añadiria con prioridad alta
-//node todo.js--list //Listaría todas las tareas
-//node todo.js--done = 1 //Marcaría la tarea 1 como hecha
-//node todo.js--undone = 1 //Desmarcaría la tarea 1 como hecha
-//node todo.js--clean //Borraria las tareas ya hechas
+//node todo.js priority 1 //Añadiria con prioridad alta a la tarea 1
+//node todo.js list //Listaría todas las tareas
+//node todo.js done  1 //Marcaría la tarea 1 como hecha
+//node todo.js undone  1 //Desmarcaría la tarea 1 como hecha
+//node todo.js clean //Borraria las tareas ya hechas
 
 //Cada tarea debe guardar el texto de la tarea, el estado y fecha añadida
 //Cuando se listen debe mostrar toda esa información
@@ -48,10 +48,10 @@ const todo = {
       done: false,
     });
   },
-
+  // Cambiamos la prioridad a true
   priority: function (index) {
-    if (listTodos[index]) {
-      listTodos[index].priority === true;
+    if (listTodos[index-1]) {
+      listTodos[index-1].priority === true;
     }
   },
 
@@ -63,8 +63,8 @@ const todo = {
   },
   // Alterna el estado de la tarea (done o undone)
   done: function (index) {
-    if (listTodos[index]) {
-      listTodos[index].done = !listTodos[index].done;
+    if (listTodos[index-1]) {
+      listTodos[index-1].done = !listTodos[index-1].done;
     }
   },
 
@@ -78,7 +78,7 @@ const todo = {
     listTodos.forEach(function (todo, index) {
       process.stdout.write(
         "\n" +
-          index +
+          (index-1) +
           "\t" +
           (todo.priority ? chalk.blueBright(todo.text) : todo.text) +
           "\t" +
