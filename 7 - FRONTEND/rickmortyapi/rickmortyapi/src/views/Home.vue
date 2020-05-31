@@ -69,7 +69,7 @@ export default {
       id: null
     };
   },
-
+  // función para buscar por ID
   methods: {
     searchChard(id) {
       api.getChard(id).then(response => (this.char = response.data));
@@ -91,7 +91,7 @@ export default {
       );
     }
   },
-
+  //FUNCION PARA OBTENER LOS DATOS CON LOS QUE CREAR LAS CARTAS
   created() {
     api.getAll().then(response => (this.chars = response.data.results));
   }
