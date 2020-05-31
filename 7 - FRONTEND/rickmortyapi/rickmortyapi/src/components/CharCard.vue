@@ -4,15 +4,15 @@
       <h2>{{char.name}}</h2>
 
       <img :src="char.image" alt="Imagen del personaje" />
-      <div class="container">
-        <p>Id: {{char.id}}</p>
-        <p>Especie:{{char.species}}</p>
-        <p>Género: {{char.gender}}</p>
-        <p
-          :class="green:char.status === 'Alive',red:char.status === 'Dead' ,red:char.status === 'unknown'"
-        >Status: {{char.status}}</p>
-        <p>Origen: {{char.origin.name}}</p>
-      </div>
+      <ul class="container">
+        <li>Id: {{char.id}}</li>
+        <li>Especie:{{char.species}}</li>
+        <li>Género: {{char.gender}}</li>
+        <li
+          :class="{ green: char.status === `Alive`,red: char.status !== `Alive` }"
+        >Status: {{char.status}}</li>
+        <li>Origen: {{char.origin.name}}</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -22,9 +22,6 @@ export default {
   name: "CharCard",
   props: {
     chars: Array
-  },
-  data() {
-    return {};
   }
 };
 </script>
@@ -61,8 +58,8 @@ img {
   align-content: center;
   margin: 10px;
   border: 1px solid black;
-
   align-items: center;
+  list-style: none;
 }
 
 .red {
@@ -70,12 +67,6 @@ img {
 }
 .green {
   color: green;
-}
-
-.container p {
-  margin: 0px;
-  color: aqua;
-  font-size: bold;
 }
 
 @media (min-width: 650px) {
@@ -89,7 +80,7 @@ img {
     .card {
       width: 400px;
     }
-    p {
+    li {
       font-size: 20px;
     }
     h2 {
