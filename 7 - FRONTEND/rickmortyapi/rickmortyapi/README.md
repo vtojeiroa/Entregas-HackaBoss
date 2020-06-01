@@ -1,4 +1,4 @@
-Crear una webb usando la appi de rick&morty con los siguientes requisitos:
+Crear una web usando la API de rick y morty con los siguientes requisitos:
 
 El título de la pestaña de navegador debe personalizarse.
 Código optimizado.
