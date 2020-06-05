@@ -7,25 +7,62 @@
       </figure>
     </header>
 
-    <!-- Barra de Búsqueda -->
-    <section class="search">
-      <label for="bySearch">Busca tu personaje 👉</label>
-      <input v-model="search" id="search" name="bySearch" type="search" placeholder="Búsqueda ..." />
-    </section>
-    <!-- Barra de Búsqueda por id del personaje -->
-    <section class="searchId">
-      <label for="byId">Busca tu personaje por su ID 👉</label>
-      <input
-        v-model="id"
-        id="byId"
-        name="byId"
-        type="search"
-        placeholder="Introduce el Id del personaje ..."
-      />
-      <button @click="searchChard(id)">Buscar ID</button>
-      <h2>Personajes👇</h2>
-      <p v-for="item in char" :key="item.id">{{item.name}}</p>
-    </section>
+    <!-- Búsqueda por id del personaje -->
+    <p>
+      <label class="type" for="byId">Busca tu personaje por su ID 👉</label>
+      <input type="number" v-model="id" id="byId" placeholder="Introduce el Id del personaje ..." />
+      <button @click="searchChar(id)">Buscar...</button>
+    </p>
+
+    <!-- Personaje buscado por ID -->
+    <div v-if="charId.id">
+      <button class="reset" @click="(charId = {}), (id = null)">Volver</button>
+      <CharCardId :char="charId"></CharCardId>
+    </div>
+
+    <div v-else>
+      <!--Búsqueda.... -->
+
+      <form id="search">
+        <p id="advanced">👇 Busqueda avanzada👇</p>
+        <!-- Por Nombre -->
+        <label class="type" for="byName">Name:</label>
+        <input v-model="search.name" id="byName" type="search" placeholder="Busca ahora..." />
+
+        <!-- Por Género -->
+        <p class="type">
+          Gender:
+          <input type="checkbox" id="male" value="male" v-model="search.gender" />
+          <label for="male">Hombre</label>
+          <input type="checkbox" id="female" value="female" v-model="search.gender" />
+          <label for="female">Mujer</label>
+          <input type="checkbox" id="genderUnknown" value="genderunknown" v-model="search.gender" />
+          <label for="genderUnknown">Otros</label>
+        </p>
+
+        <!-- Por estatus -->
+        <p class="type">
+          Status:
+          <input type="checkbox" id="alive" value="alive" v-model="search.status" />
+          <label for="alive">Vivo</label>
+          <input type="checkbox" id="dead" value="dead" v-model="search.status" />
+          <label for="dead">Muerto</label>
+          <input type="checkbox" id="statusUnknown" value="statusunknown" v-model="search.status" />
+          <label for="statusUnknown">Ni vivo ni muerto</label>
+        </p>
+        <button
+          class="reset"
+          @click="
+            search = {
+               gender: [],
+              status: [],
+            }
+          "
+        >Borrar selección</button>
+      </form>
+    </div>
+
+    <h2>👇Personajes👇</h2>
 
     <!-- Código optimizado -->
     <section class="chars">
@@ -53,47 +90,64 @@
 <script>
 // @ is an alias to /src
 import CharCard from "@/components/CharCard.vue";
+import CharCardId from "@/components/CharCardId.vue";
 // IMPORTANDO LA CONFIGURACION API
 import api from "@/api/api.js";
 
 export default {
   name: "Home",
   components: {
-    CharCard
+    CharCard,
+    CharCardId
   },
   data() {
     return {
+      id: null,
       chars: [],
-      search: " ",
-      char: [],
-      id: null
+      charId: {},
+      search: {
+        gender: [],
+        status: []
+      }
     };
-  },
-  // función para buscar por ID
-  methods: {
-    searchChard(id) {
-      api.getChard(id).then(response => (this.char = response.data));
-    }
   },
 
   computed: {
     filteredChars() {
-      // si search está vacio...
-      if (!this.search) {
-        return this.chars;
+      let result = this.chars;
+
+      /* Búsqueda por Nombre */
+      if (this.search.name) {
+        result = result.filter(char =>
+          char.name.toLowerCase().includes(this.search.name.toLowerCase())
+        );
       }
-      // si search tiene algo...
-      return this.chars.filter(
-        char =>
-          char.name.toLowerCase().includes(this.search.toLowerCase()) ||
-          char.gender.toLowerCase().includes(this.search.toLowerCase()) ||
-          char.status.toLowerCase().includes(this.search.toLowerCase())
-      );
+      /* Búsqueda por género */
+      if (this.search.gender.length) {
+        result = result.filter(char =>
+          this.search.gender.includes(char.gender.toLowerCase())
+        );
+      }
+      /* Búsqueda por estatus */
+      if (this.search.status.length) {
+        result = result.filter(char =>
+          this.search.status.includes(char.status.toLowerCase())
+        );
+      }
+      return result;
     }
   },
-  //FUNCION PARA OBTENER LOS DATOS CON LOS QUE CREAR LAS CARTAS
+
+  methods: {
+    searchChar(id) {
+      if (id > 0) {
+        api.getChar(id).then(res => (this.charId = res.data));
+      }
+    }
+  },
+
   created() {
-    api.getAll().then(response => (this.chars = response.data.results));
+    api.getAll().then(res => (this.chars = res.data.results));
   }
 };
 </script>
@@ -105,8 +159,11 @@ header figure img {
 .search {
   padding: 10px;
 }
-.searchId h2 {
-  color: blue;
+.type {
+  color: greenyellow;
+}
+h2 {
+  color: turquoise;
 }
 label {
   color: blue;
@@ -124,6 +181,11 @@ button {
   justify-content: center;
   max-width: 100vh;
   max-height: 100vh;
+}
+
+p#advanced {
+  font-size: 1.5rem;
+  color: turquoise;
 }
 
 @media (min-width: 650px) {
