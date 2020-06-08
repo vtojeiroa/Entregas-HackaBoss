@@ -69,10 +69,11 @@ li {
   border: 3px solid blue;
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   align-items: center;
-  width: 40%;
+  width: 80%;
 }
 .created {
   flex-basis: 30%;
@@ -98,5 +99,23 @@ a {
   background: rgba(3, 118, 250, 0.3);
   font-family: "Noto Sans KR", sans-serif;
   font-size: 1.2rem;
+}
+
+@media (min-width: 400px) {
+  li {
+    width: 60%;
+  }
+}
+
+@media (min-width: 700px) {
+  li {
+    flex-direction: row;
+    width: 60%;
+  }
+}
+@media (min-width: 900px) {
+  li {
+    width: 60%;
+  }
 }
 </style>

@@ -37,8 +37,8 @@ body {
   color: greenyellow;
 }
 h1 {
-  padding: 2rem 0;
-  font-size: 3rem;
+  padding: 1rem 0;
+  font-size: 1.5rem;
   color: rgb(66, 185, 131);
   text-shadow: 3px 3px black;
 }
@@ -54,5 +54,19 @@ footer {
 }
 footer p {
   align-self: center;
+}
+
+@media (min-width: 600px) {
+  h1 {
+    padding: 1.5rem 0;
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 900px) {
+  h1 {
+    padding: 2rem 0;
+    font-size: 3.5rem;
+  }
 }
 </style>

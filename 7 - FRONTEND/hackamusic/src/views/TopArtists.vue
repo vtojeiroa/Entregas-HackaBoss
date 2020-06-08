@@ -18,7 +18,7 @@
         placeholder="Busca tu grupo o artista"
       />
       <br />
-      <button class="reset" @click="search = ''">Limpia el buscador</button>
+      <button class="reset" @click="search = ''">Limpiar el buscador</button>
     </article>
     <!-- Importo la animación de CSS de cargando -->
 
@@ -98,14 +98,14 @@ export default {
 <style scoped>
 label {
   color: aquamarine;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
   margin-right: 0.5rem;
 }
 input {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
 
   color: black;
-  border: 2px solid blue;
+  border: 1px solid blue;
 }
 
 ::-webkit-input-placeholder {
@@ -114,14 +114,14 @@ input {
 button {
   margin: 0.5rem;
   padding: 0.2rem;
-  border: 2px solid blue;
+  border: 1px solid blue;
   border-radius: 5px;
   background: rgba(153, 144, 144, 0.749);
-  font-size: 1rem;
+  font-size: 0.5rem;
   font-weight: bolder;
-  width: 10rem;
+  width: 5rem;
   color: rgb(168, 33, 67);
-  text-shadow: 2px 2 px black;
+  text-shadow: 1px 1px black;
 }
 
 .lds-ripple {
@@ -154,6 +154,65 @@ button {
     width: 72px;
     height: 72px;
     opacity: 0;
+  }
+}
+@media (min-width: 600px) {
+  label {
+    color: aquamarine;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+  input {
+    font-size: 1.2rem;
+
+    color: black;
+    border: 2px solid blue;
+  }
+
+  ::-webkit-input-placeholder {
+    color: black;
+  }
+  button {
+    margin: 0.5rem;
+    padding: 0.2rem;
+    border: 2px solid blue;
+    border-radius: 5px;
+    background: rgba(153, 144, 144, 0.749);
+    font-size: 1rem;
+    font-weight: bolder;
+    width: 10rem;
+    color: rgb(168, 33, 67);
+    text-shadow: 2px 2 px black;
+  }
+}
+
+@media (min-width: 900px) {
+  label {
+    color: aquamarine;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+  input {
+    font-size: 1.2rem;
+
+    color: black;
+    border: 2px solid blue;
+  }
+
+  ::-webkit-input-placeholder {
+    color: black;
+  }
+  button {
+    margin: 0.5rem;
+    padding: 0.2rem;
+    border: 2px solid blue;
+    border-radius: 5px;
+    background: rgba(153, 144, 144, 0.749);
+    font-size: 1rem;
+    font-weight: bolder;
+    width: 10rem;
+    color: rgb(168, 33, 67);
+    text-shadow: 2px 2 px black;
   }
 }
 </style>
