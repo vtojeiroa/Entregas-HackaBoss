@@ -1,5 +1,11 @@
 # rickmortyapi
 
+## Objetivo
+```El proyecto debe llamarse "RickMortyAPI". Debe tener mínimo (inicialmente)
+una página HOME donde se muestren los personajes de la serie y una página
+ABOUT donde haya información y redes sociales de cada autor/a del
+proyecto.```
+
 ## Project setup
 ```
 npm install

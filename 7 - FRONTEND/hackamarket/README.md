@@ -1,11 +1,6 @@
-# hackamusic
+# hackamarket
 
-## Objetivo
-```
-Construir una plataforma de música utilizando Vuejs y la API de Lastfm
-```
-
-### Project setup
+## Project setup
 ```
 npm install
 ```
@@ -22,6 +17,3 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-
